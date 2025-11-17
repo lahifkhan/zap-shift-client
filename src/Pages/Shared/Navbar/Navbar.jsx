@@ -65,18 +65,20 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <div className="btn btn-ghost text-xl">
           <Logo></Logo>
-        </a>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end flex gap-2">
         {user ? (
-          <button onClick={handleLogOut} className="btn text-accent">
-            Log Out
-          </button>
+          <div>
+            <button onClick={handleLogOut} className="btn text-accent">
+              Log Out
+            </button>
+          </div>
         ) : (
           <Link to={"/login"} className="btn text-accent">
             Sign in

@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hook/useAuth";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Register = () => {
   const {
@@ -11,16 +12,44 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser } = useAuth();
+
+  const { createUser, profileUpdate } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
   const registerSubmit = (data) => {
     console.log(data);
 
+    const profileImg = data.photo[0];
+
     createUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
+
+        // conver photo to form data
+        const formData = new FormData();
+        formData.append("image", profileImg);
+        // img api url
+        const img_api_url = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_image_host
+        }`;
+
+        axios.post(img_api_url, formData).then((res) => {
+          console.log(res.data.data.display_url);
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
+          profileUpdate(userProfile)
+            .then(() => {
+              console.log("profile update done");
+            })
+            .catch((err) => {
+              console.log(err);
+              toast.error(err.code);
+            });
+        });
+
         navigate(location?.state || "/");
         toast.success("Account created successfully");
       })
@@ -46,8 +75,20 @@ const Register = () => {
                 className="input w-full"
                 placeholder="Name"
               />
-
               {errors.name?.type === "required" && (
+                <p className="text-red-500">Name must required</p>
+              )}
+
+              <label className="label text-black">Photo</label>
+              <input
+                type="file"
+                name="phot"
+                {...register("photo", { required: true })}
+                className="file-input w-full"
+                placeholder="Name"
+              />
+
+              {errors.photo?.type === "required" && (
                 <p className="text-red-500">Name must required</p>
               )}
 
