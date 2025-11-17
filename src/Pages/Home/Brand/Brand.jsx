@@ -12,7 +12,7 @@ const brands = [brand1, brand2, brand3, brand4, brand5, brand6];
 const Brand = () => {
   return (
     <div className="my-24">
-      <h1 className="text-secondary font-bold text-center mb-8 text-2xl">
+      <h1 className="text-secondary font-bold text-center mb-8 text-3xl">
         We've helped thousands of,sales teams
       </h1>
       <Marquee autoFill={true} gradient={true} gradientColor="#03373d">

@@ -13,7 +13,7 @@ const Navbar = () => {
         <NavLink to={"/"}>Services</NavLink>
       </li>
       <li className="text-accent">
-        <NavLink to={"/"}>Coverage</NavLink>
+        <NavLink to={"/coverage"}>Coverage</NavLink>
       </li>
 
       <li className="text-accent">
