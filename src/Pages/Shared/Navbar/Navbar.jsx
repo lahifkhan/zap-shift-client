@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../../../Components/Logo/Logo";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
 const Navbar = () => {
@@ -60,7 +60,9 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end flex gap-2">
-        <a className="btn text-accent">Sign in</a>
+        <Link to={"/login"} className="btn text-accent">
+          Sign in
+        </Link>
         <a className="btn btn-primary text-black">Be a rider</a>
         <BsArrowUpRightCircleFill size={40} />
       </div>
