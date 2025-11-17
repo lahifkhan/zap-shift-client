@@ -2,8 +2,10 @@ import React from "react";
 import Logo from "../../../Components/Logo/Logo";
 import { Link, NavLink } from "react-router";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
+import useAuth from "../../../Hook/useAuth";
 
 const Navbar = () => {
+  const { user, logOut, setUser } = useAuth();
   const links = (
     <>
       <li className="text-accent">
@@ -24,6 +26,14 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        setUser(null);
+      })
+      .then((err) => console.log(err));
+  };
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -60,9 +70,15 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end flex gap-2">
-        <Link to={"/login"} className="btn text-accent">
-          Sign in
-        </Link>
+        {user ? (
+          <button onClick={handleLogOut} className="btn text-accent">
+            Log Out
+          </button>
+        ) : (
+          <Link to={"/login"} className="btn text-accent">
+            Sign in
+          </Link>
+        )}
         <a className="btn btn-primary text-black">Be a rider</a>
         <BsArrowUpRightCircleFill size={40} />
       </div>
