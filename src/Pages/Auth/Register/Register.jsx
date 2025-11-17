@@ -1,6 +1,6 @@
 import React from "react";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hook/useAuth";
 import toast from "react-hot-toast";
@@ -12,12 +12,16 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const { createUser } = useAuth();
+
+  const location = useLocation();
+  const navigate = useNavigate();
   const registerSubmit = (data) => {
     console.log(data);
 
     createUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
+        navigate(location?.state || "/");
         toast.success("Account created successfully");
       })
       .catch((err) => {

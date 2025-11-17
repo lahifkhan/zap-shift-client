@@ -84,7 +84,11 @@ const LogIn = () => {
           </form>
           <p>
             Don’t have any account?{" "}
-            <Link to={"/register"} className="text-blue-500">
+            <Link
+              state={location.state}
+              to={"/register"}
+              className="text-blue-500"
+            >
               Register
             </Link>{" "}
           </p>

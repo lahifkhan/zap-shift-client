@@ -3,16 +3,17 @@ import Logo from "../../../Components/Logo/Logo";
 import { Link, NavLink } from "react-router";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import useAuth from "../../../Hook/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { user, logOut, setUser } = useAuth();
+  const { user, logOut, setUser, setloading } = useAuth();
   const links = (
     <>
       <li className="text-accent">
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li className="text-accent">
-        <NavLink to={"/"}>Services</NavLink>
+        <NavLink to={"/services"}>Services</NavLink>
       </li>
       <li className="text-accent">
         <NavLink to={"/coverage"}>Coverage</NavLink>
@@ -31,6 +32,8 @@ const Navbar = () => {
     logOut()
       .then(() => {
         setUser(null);
+        setloading(false);
+        toast.success("Log out successfully");
       })
       .then((err) => console.log(err));
   };
