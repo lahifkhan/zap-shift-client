@@ -22,7 +22,7 @@ const OurService = () => {
           business shipments — we deliver on time, every time.
         </p>
       </div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {services.map((service) => (
           <div className="bg-base-100 rounded-2xl space-y-2 shadow-5xl p-4 hover:bg-primary flex flex-col justify-center items-center">
             <img src={serviceImg} alt="" />
