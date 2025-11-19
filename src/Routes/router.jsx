@@ -7,6 +7,9 @@ import LogIn from "../Pages/Auth/LogIn/LogIn";
 import Register from "../Pages/Auth/Register/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import Services from "../Pages/Services/Services";
+import Parcels from "../Pages/Parcels/Parcels";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import Myparcels from "../Pages/Dashboard/Myparcels/Myparcels";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +32,15 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
       },
+
+      {
+        path: "/parcels",
+        element: (
+          <PrivateRoutes>
+            <Parcels></Parcels>
+          </PrivateRoutes>
+        ),
+      },
     ],
   },
 
@@ -43,6 +55,21 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         Component: Register,
+      },
+    ],
+  },
+
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        path: "myParcels",
+        Component: Myparcels,
       },
     ],
   },

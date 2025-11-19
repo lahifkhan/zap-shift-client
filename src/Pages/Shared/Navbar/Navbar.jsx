@@ -22,9 +22,17 @@ const Navbar = () => {
       <li className="text-accent">
         <NavLink to={"/"}>About Us</NavLink>
       </li>
-      <li className="text-accent">
-        <NavLink to={"/"}>Pricing</NavLink>
-      </li>
+      {user && (
+        <>
+          <li className="text-accent">
+            <NavLink to={"/parcels"}>Parcels</NavLink>
+          </li>
+
+          <li className="text-accent">
+            <NavLink to={"/dashboard/myParcels"}>My Parcels</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 

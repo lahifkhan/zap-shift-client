@@ -1,0 +1,24 @@
+import React from "react";
+import useAuth from "../../../Hook/useAuth";
+import useAxiosSecure from "../../../Hook/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+
+const Myparcels = () => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const { data: parcels = [] } = useQuery({
+    queryKey: ["myParcels", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/parcels?email=${user.email}`);
+      return res.data;
+    },
+  });
+  return (
+    <div>
+      <p>My parcels {parcels.length}</p>
+    </div>
+  );
+};
+
+export default Myparcels;
