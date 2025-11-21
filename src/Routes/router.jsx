@@ -10,6 +10,9 @@ import Services from "../Pages/Services/Services";
 import Parcels from "../Pages/Parcels/Parcels";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Myparcels from "../Pages/Dashboard/Myparcels/Myparcels";
+import Payment from "../Pages/Dashboard/Myparcels/Payment/Payment";
+import PaymentSuccess from "../Pages/Dashboard/Myparcels/Payment/PaymentSuccess";
+import PaymentCancel from "../Pages/Dashboard/Myparcels/Payment/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +73,20 @@ export const router = createBrowserRouter([
       {
         path: "myParcels",
         Component: Myparcels,
+      },
+
+      {
+        path: "payment/:parcelId",
+        Component: Payment,
+      },
+
+      {
+        path: "payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "payment-cancelled",
+        Component: PaymentCancel,
       },
     ],
   },

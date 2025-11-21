@@ -25,7 +25,7 @@ const Navbar = () => {
       {user && (
         <>
           <li className="text-accent">
-            <NavLink to={"/parcels"}>Parcels</NavLink>
+            <NavLink to={"/parcels"}>Add Parcels</NavLink>
           </li>
 
           <li className="text-accent">

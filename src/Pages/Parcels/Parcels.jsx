@@ -68,6 +68,7 @@ const Parcels = () => {
     }
 
     console.log(cost);
+    data.cost = cost;
 
     Swal.fire({
       title: "Are you sure?",
