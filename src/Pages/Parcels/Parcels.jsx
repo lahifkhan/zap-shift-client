@@ -3,10 +3,12 @@ import { useForm, useWatch } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import useAuth from "../../Hook/useAuth";
+import { useNavigate } from "react-router";
 
 const Parcels = () => {
   const { register, handleSubmit, control } = useForm();
   const { user } = useAuth();
+  const navigate = useNavigate();
   console.log(user);
 
   const [stores, setStores] = useState([]);
@@ -82,12 +84,15 @@ const Parcels = () => {
       if (result.isConfirmed) {
         axiosSecure.post("/parcels", data).then((res) => {
           console.log(res.data);
+          if (res.data.insertedId) {
+            Swal.fire({
+              title: "Added!",
+              text: "Your parcel has been added.",
+              icon: "success",
+            });
+            navigate("/dashboard/myParcels");
+          }
         });
-        // Swal.fire({
-        //   title: "Deleted!",
-        //   text: "Your file has been deleted.",
-        //   icon: "success",
-        // });
       }
     });
   };
