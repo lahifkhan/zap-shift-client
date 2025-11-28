@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Hook/useAuth";
 import toast from "react-hot-toast";
 import axios from "axios";
+import useAxiosSecure from "../../../Hook/useAxiosSecure";
 
 const Register = () => {
   const {
@@ -14,6 +15,7 @@ const Register = () => {
   } = useForm();
 
   const { createUser, profileUpdate } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -36,6 +38,18 @@ const Register = () => {
 
         axios.post(img_api_url, formData).then((res) => {
           console.log(res.data.data.display_url);
+          const photoURL = res.data.data.display_url;
+
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            photoURL: photoURL,
+          };
+
+          axiosSecure.post("/user", userInfo).then((res) => {
+            console.log(res.data);
+          });
+
           const userProfile = {
             displayName: data.name,
             photoURL: res.data.data.url,

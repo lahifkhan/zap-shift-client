@@ -2,17 +2,29 @@ import React from "react";
 import useAuth from "../../../Hook/useAuth";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router";
+import useAxiosSecure from "../../../Hook/useAxiosSecure";
 
 const SocialLogin = () => {
   const { signGoogle } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const handleGoogleSignIn = () => {
     signGoogle()
       .then((res) => {
         console.log(res.user);
         toast.success("Successfully Log in");
+        const userInfo = {
+          email: res.user.email,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+        };
+
+        axiosSecure.post("/user", userInfo).then((res) => {
+          console.log("from socila login user ", res.data);
+        });
+
         navigate(location?.state || "/");
       })
       .catch((err) => {

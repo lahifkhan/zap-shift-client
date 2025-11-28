@@ -1,5 +1,6 @@
 import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
+import { FaCreditCard } from "react-icons/fa6";
 import { Link, NavLink, Outlet } from "react-router";
 
 const DashboardLayout = () => {
@@ -82,6 +83,20 @@ const DashboardLayout = () => {
                 >
                   <CiDeliveryTruck color="black" size={18} />
                   <span className="is-drawer-close:hidden">My parcels</span>
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to={"/dashboard/paymentHistory"}
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="My Payment history"
+                >
+                  <FaCreditCard color="black" size={18} />
+
+                  <span className="is-drawer-close:hidden">
+                    My payment history
+                  </span>
                 </Link>
               </li>
               {/* List item */}
