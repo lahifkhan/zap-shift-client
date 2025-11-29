@@ -92,7 +92,9 @@ const Navbar = () => {
             Sign in
           </Link>
         )}
-        <a className="btn btn-primary text-black">Be a rider</a>
+        <Link to={"/rider"} className="btn btn-primary text-black">
+          Be a rider
+        </Link>
         <BsArrowUpRightCircleFill size={40} />
       </div>
     </div>
