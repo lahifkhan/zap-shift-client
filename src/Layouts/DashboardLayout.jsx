@@ -3,8 +3,15 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { FaCreditCard } from "react-icons/fa6";
 import { Link, NavLink, Outlet } from "react-router";
 import { RiEBike2Line } from "react-icons/ri";
+import { FaUsersCog } from "react-icons/fa";
+import useRole from "../Hook/useRole";
 
 const DashboardLayout = () => {
+  const { role, isLoading } = useRole();
+  if (isLoading) {
+    return <p>loading...</p>;
+  }
+  console.log(role);
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -101,18 +108,40 @@ const DashboardLayout = () => {
                 </Link>
               </li>
 
-              {/* rider approve */}
-              <li>
-                <Link
-                  to={"/dashboard/approve-rider"}
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Approve rider"
-                >
-                  <RiEBike2Line size={18} />
+              {role === "admin" && (
+                <>
+                  {/* rider approve */}
+                  <li>
+                    <Link
+                      to={"/dashboard/approve-rider"}
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Approve rider"
+                    >
+                      <RiEBike2Line size={18} />
 
-                  <span className="is-drawer-close:hidden">Approve Rider</span>
-                </Link>
-              </li>
+                      <span className="is-drawer-close:hidden">
+                        Approve Rider
+                      </span>
+                    </Link>
+                  </li>
+
+                  {/* user Management*/}
+                  <li>
+                    <Link
+                      to={"/dashboard/user-management"}
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="User Management"
+                    >
+                      <FaUsersCog size={18} />
+
+                      <span className="is-drawer-close:hidden">
+                        User Management
+                      </span>
+                    </Link>
+                  </li>
+                </>
+              )}
+
               {/* List item */}
               <li>
                 <button
