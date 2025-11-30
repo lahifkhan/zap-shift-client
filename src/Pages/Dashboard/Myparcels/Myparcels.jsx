@@ -7,6 +7,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import Loader from "../../../Components/Loader/Loader";
 
 const Myparcels = () => {
   const { user } = useAuth();
@@ -53,7 +54,7 @@ const Myparcels = () => {
   };
 
   if (isPending) {
-    return <p>loading....</p>;
+    return <Loader></Loader>;
   }
 
   const handlePayment = async (parcel) => {

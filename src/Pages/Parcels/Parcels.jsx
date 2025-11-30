@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import useAuth from "../../Hook/useAuth";
 import { useNavigate } from "react-router";
+import Loading from "../../Components/Loader/Loader";
+import Loader from "../../Components/Loader/Loader";
 
 const Parcels = () => {
   const { register, handleSubmit, control } = useForm();
@@ -40,7 +42,7 @@ const Parcels = () => {
   const receiverRegion = useWatch({ control, name: "receiverRegion" });
 
   if (loading) {
-    return <p>loading...</p>;
+    return <Loader></Loader>;
   }
 
   handleDistrict(regions[0]);

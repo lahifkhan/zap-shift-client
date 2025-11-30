@@ -5,11 +5,13 @@ import { Link, NavLink, Outlet } from "react-router";
 import { RiEBike2Line } from "react-icons/ri";
 import { FaUsersCog } from "react-icons/fa";
 import useRole from "../Hook/useRole";
+import Loader from "../Components/Loader/Loader";
 
 const DashboardLayout = () => {
   const { role, isLoading } = useRole();
   if (isLoading) {
-    return <p>loading...</p>;
+    console.log("loading...");
+    return <Loader></Loader>;
   }
   console.log(role);
   return (
