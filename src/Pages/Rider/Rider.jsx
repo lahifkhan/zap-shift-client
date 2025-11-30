@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import useAuth from "../../Hook/useAuth";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Rider = () => {
   const {
@@ -42,6 +43,13 @@ const Rider = () => {
 
     axiosSecure.post("/rider", data).then((res) => {
       console.log(res.data);
+      if (res.data.insertedId) {
+        Swal.fire({
+          title: "Send!",
+          text: "Your request has been send.",
+          icon: "success",
+        });
+      }
     });
   };
 

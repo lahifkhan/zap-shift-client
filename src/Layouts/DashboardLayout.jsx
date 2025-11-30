@@ -2,6 +2,7 @@ import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { FaCreditCard } from "react-icons/fa6";
 import { Link, NavLink, Outlet } from "react-router";
+import { RiEBike2Line } from "react-icons/ri";
 
 const DashboardLayout = () => {
   return (
@@ -97,6 +98,19 @@ const DashboardLayout = () => {
                   <span className="is-drawer-close:hidden">
                     My payment history
                   </span>
+                </Link>
+              </li>
+
+              {/* rider approve */}
+              <li>
+                <Link
+                  to={"/dashboard/approve-rider"}
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="Approve rider"
+                >
+                  <RiEBike2Line size={18} />
+
+                  <span className="is-drawer-close:hidden">Approve Rider</span>
                 </Link>
               </li>
               {/* List item */}
